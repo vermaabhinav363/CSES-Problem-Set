@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define pb push_back
+using namespace std;
+
+ll arr[1000005];
+
+ll solve(ll n){
+    if(n>=0 && arr[n]!=-1){
+        return arr[n];
+    }
+
+    if(n<0){
+        return 0;
+    }
+    if(n==0){
+        return arr[n] = 1;
+    }
+
+    ll ans =0;
+    for(ll i =1;i<=6;i++){
+            ans += solve(n-i);
+            ans %= 1000000007;
+    }
+    return arr[n] = ans % 1000000007;
+}
+
+int main()
+ 
+{
+ 
+#ifndef ONLINE_JUDGE
+ 
+    freopen("input.txt", "r", stdin);
+ 
+    freopen("output.txt", "w", stdout);
+   
+#endif
+    
+    ll n;
+    cin>>n;
+    for(ll i=0;i<1000005;i++){
+        arr[i]=-1;
+    }
+    cout<<solve(n);
+    
+    
+}
